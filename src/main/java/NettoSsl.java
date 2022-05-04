@@ -13,13 +13,11 @@ public class NettoSsl {
       System.out.println("hi");
 
       Config.Builder configBuilder = new Config.Builder();
+      configBuilder.port(8080);
 
       boolean ssl = true;
       if (ssl) {
         SelfSignedCertificate ssc = new SelfSignedCertificate("localhost");
-        // SslContext sslCtx = SslContextBuilder.forServer(new File(certPath),
-        // new
-        // File(keyPath), null).build();
         SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey(), null).build();
         configBuilder.sslContext(sslCtx);
       }
